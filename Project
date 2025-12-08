@@ -1,0 +1,63 @@
+class PatientTestRecommendation:
+    def __init__(self, name: str, age: int, symptom: str):
+        self.name = name
+        self.age = age
+        self.symptom = symptom.strip().lower()
+
+    def recommend_tests(self) -> str:
+        s = self.symptom
+       
+        if "fever" in s:
+            return ("CBC, CRP/ESR, Urine R, Dengue Testing: NS1 antigen or RT-PCR (days 0–5), "
+            "follow-up IgM if negative or >5 days; plus malaria and Widal where indicated")
+            
+        elif "chest pain" in s or "heart pain" in s:
+            return "Troponin (or high-sensitivity troponin), CK-MB, Lipid Profile"
+       
+        elif "sugar" in s or "diabetes" in s:
+            return "HbA1c, Fasting & Postprandial Blood, Insulin F&PP"
+       
+        elif "weight gain" in s:
+            return "Lipid Profile, TSH (Thyroid), CBC, Fasting Glucose or HbA1c"
+        
+        elif "hair fall" in s:
+            return "CBC (for anemia), TSH/Free T4 (thyroid), Ferritin (iron stores), Vitamin D, B12"
+       
+        elif "pcod" in s or "pcos" in s:
+            return ("Hormonal Panel: Total & Free Testosterone, DHEA-S, FSH, LH, Prolactin, TSH, SHBG, AMH; "
+            "plus OGTT or fasting glucose and lipid profile; exclude pregnancy, thyroid disease, CAH")
+
+        
+        elif "urine infection" in s or "urinary tract infection" in s:
+            return "Urine Routine (Urine R), Urine Culture & Sensitivity, Kidney Function Tests (Creatinine, BUN)"
+        
+        elif "pregnancy" in s:
+            return "Beta-hCG, (if pregnant) ANC Profile, consider First Trimester Screening (Double Marker),OGTT"
+        
+        elif "Cancer test" in s or "Diagnose Cancer"in s:
+            return "CBC, PSA(Prostate Cancer),CA-125(Ovarian Cancer),CA-15.3(Breast Cancer),CA-72.4(Stomach Cancer),CA-19.9(Panreatic Cancer)"
+        
+        elif "corona" in s or "covid" in s or "pneumonia" in s:
+            return "CBC, RT-PCR, CRP, Antigen"  
+        
+        elif "Tuberculin" in s or "TB" in s:
+            return "CBC, Montoux test,TB-gold,T-SPOT.TB"
+        
+        elif "full body" in s or "full body test" in s:
+            return ("General Wellness Panel: CBC, LFT,KFT, Lipid Profile, HbA1c, F&PP, TFT, "
+                    "Vitamin D, B12, Iron Panel, Urine Routine")
+        else:
+            return "Symptom not recognized—please provide a valid symptom or consult a clinician."
+        
+    def __str__(self):
+        return (f"Patient: {self.name}, Age: {self.age}, Symptom: {self.symptom.capitalize()}, "
+                f"Recommended Tests: {self.recommend_tests()}")
+
+
+if __name__ == "__main__":
+    name = input("Enter patient name: ")
+    age = int(input("Enter patient age: "))
+    symptom = input("Enter primary symptom (e.g., Fever, Chest Pain, Sugar, Weight Gain...): ")
+
+    patient = PatientTestRecommendation(name, age, symptom)
+    print(patient)
